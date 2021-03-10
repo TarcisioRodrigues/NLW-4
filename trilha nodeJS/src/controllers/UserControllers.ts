@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { UsersRepository } from '../repositories/UsersRepository';
+import SendMailService from '../servicces/SendMailService';
 class UserController {
   async create(request: Request, response: Response) {
     const { name, email } = request.body;
@@ -20,6 +21,7 @@ class UserController {
       email,
     });
     await userRepository.save(user);
+
     return response.json('Salvado com Sucesso');
   }
 }
